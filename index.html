@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lynn's Personal Website</title>
+    <style>
+        /* Dreamy color palette */
+        :root {
+            --primary: #a78bfa;
+            --secondary: #c4b5fd;
+            --accent: #e9d5ff;
+            --text: #4c1d95;
+            --bg: #faf5ff;
+            --card: #ffffff;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 0.4; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            background-image: radial-gradient(var(--secondary) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+        
+        header a::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        header a:focus:not(:active)::after {
+            animation: ripple 0.6s ease-out;
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--text);
+            margin-top: 3rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+            display: inline-block;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        h1:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        h1:hover:after {
+            width: 120px;
+        }
+        
+        h3 {
+            color: var(--text);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            position: relative;
+            display: inline-block;
+            cursor: default;
+        }
+        
+        h3:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        h3:hover:after {
+            width: 70px;
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 2rem auto;
+            padding: 30px;
+            background-color: var(--card);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+            animation: subtleFloat 8s ease-in-out infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .container:before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent), transparent 70%);
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        p, li {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        ul {
+            padding-left: 0;
+        }
+        
+        li {
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        li:hover {
+            transform: translateX(5px);
+        }
+        
+        li:before {
+            content: "✦";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        li:hover:before {
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(167,139,250,0.1), rgba(196,181,253,0.2));
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .highlight:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(167, 139, 250, 0.15);
+        }
+        
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .interest-tag {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: var(--text);
+            padding: 6px 15px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            animation: float 4s ease-in-out infinite;
+            cursor: pointer;
+        }
+        
+        .interest-tag:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .interest-tag:nth-child(2n) {
+            animation-delay: 0.5s;
+        }
+        
+        .interest-tag:nth-child(3n) {
+            animation-delay: 1s;
+        }
+        
+        /* Profile image styling */
+        .profile-image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(167, 139, 250, 0.3);
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Subtle floating animation for the container */
+        @keyframes subtleFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            background-color: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+            animation: sparkleFade 1s forwards;
+        }
+        
+        @keyframes sparkleFade {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+        
+        /* Floating hearts decoration */
+        .floating-heart {
+            position: absolute;
+            font-size: 1.2rem;
+            color: var(--primary);
+            opacity: 0.3;
+            z-index: -1;
+            animation: floatHeart 15s linear infinite;
+        }
+        
+        @keyframes floatHeart {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-500px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">About Lynn</a>
+        <a href="character.html">About Mingyu</a>
+    </header>
+
+    <div class="container" id="main-container">
+        <center><h1>Welcome to Lynn's World!</h1></center>
+        
+        <div class="highlight">
+            <h3>Get to Know Me! ✨</h3>
+            <div class="profile-image-container">
+                <img src="IMG_0522.jpg" class="profile-image">
+            </div>
+            <p>Hello Everyone! I'm Lynn, a creative and enthusiastic young girl living in Indonesia. Currently, I'm a junior high school student at Santa Laurensia who loves exploring new hobbies and experiences!</p>
+        </div>
+
+        <h3>My Background 🏠</h3>
+        <ul>
+            <li>Born in Jakarta, Indonesia on <strong>25 November 2010</strong></li>
+            <li>Live with my wonderful family: my brother, mom (who's an amazing baker!), and dad in West Jakarta</li>
+            <li>Proud student at Santa Laurensia Junior High School</li>
+        </ul>
+
+        <h3>My Interests! 🎨</h3>
+        <div class="interests">
+            <span class="interest-tag">K-Dramas</span>
+            <span class="interest-tag">C-Dramas</span>
+            <span class="interest-tag">Candle Making</span>
+            <span class="interest-tag">Arts & Crafts</span>
+            <span class="interest-tag">Baking</span>
+            <span class="interest-tag">Netflix</span>
+            <span class="interest-tag">Pottery</span>
+            <span class="interest-tag">Painting</span>
+        </div>
+        <p>I absolutely love watching K-Dramas and C-Dramas - they're my go-to for relaxation! My creative side comes out through candle making, which I find so therapeutic. Art and crafts are my passion, and you'll often find me trying new projects.</p>
+        <p>When I'm not being creative, I'm probably baking delicious treats (thanks to my baker mom for inspiring me!) or binge-watching something great on Netflix. Some of my favorite moments are doing creative projects with my mom - from making candles to painting, every moment is special.</p>
+
+        <h3>My Experiences! 🌟</h3>
+        <p>I've always been fascinated by organizations and leadership opportunities. Here are some of my experiences:</p>
+        <ul>
+            <li>Active member of the <strong>Student Council</strong></li>
+            <li>Participated in the <strong>Altar Server Organization</strong></li>
+            <li>Committee member for various school events:
+                <ul>
+                    <li>Laurensia Cup</li>
+                    <li>Open House events</li>
+                    <li>And more!</li>
+                </ul>
+            </li>
+        </ul>
+        <p>These experiences have helped me grow my leadership skills and taught me the value of teamwork.</p>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('main-container');
+            const colors = ['#a78bfa', '#c4b5fd', '#e9d5ff'];
+            
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = '♥';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (10 + Math.random() * 20) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (10 + Math.random() * 15) + 'px';
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(heart);
+            }
+        }
+        
+        // Add sparkle effect on click
+        document.addEventListener('click', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = e.clientX + 'px';
+            sparkle.style.top = e.clientY + 'px';
+            sparkle.style.width = (10 + Math.random() * 20) + 'px';
+            sparkle.style.height = sparkle.style.width;
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        });
+        
+        // Initialize animations
+        window.addEventListener('load', function() {
+            createHearts();
+            
+            // Animate list items sequentially
+            const listItems = document.querySelectorAll('li');
+            listItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
+

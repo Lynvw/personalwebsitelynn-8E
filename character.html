@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mingyu | SEVENTEEN</title>
+    <style>
+        /* Blue color palette */
+        :root {
+            --primary: #3b82f6;
+            --secondary: #60a5fa;
+            --accent: #93c5fd;
+            --text: #1e3a8a;
+            --bg: #f0f9ff;
+            --card: #ffffff;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 0.4; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            background-image: radial-gradient(var(--secondary) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+        
+        header a::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        header a:focus:not(:active)::after {
+            animation: ripple 0.6s ease-out;
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--text);
+            margin-top: 3rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+            display: inline-block;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        h1:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        h1:hover:after {
+            width: 120px;
+        }
+        
+        h3 {
+            color: var(--text);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            position: relative;
+            display: inline-block;
+            cursor: default;
+        }
+        
+        h3:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        h3:hover:after {
+            width: 70px;
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 2rem auto;
+            padding: 30px;
+            background-color: var(--card);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+            animation: subtleFloat 8s ease-in-out infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .container:before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent), transparent 70%);
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        p, li {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        ul {
+            padding-left: 0;
+        }
+        
+        li {
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        li:hover {
+            transform: translateX(5px);
+        }
+        
+        li:before {
+            content: "♡";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        li:hover:before {
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.2));
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .highlight:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+        
+        .facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .fact-tag {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: var(--text);
+            padding: 6px 15px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            animation: float 4s ease-in-out infinite;
+            cursor: pointer;
+        }
+        
+        .fact-tag:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .fact-tag:nth-child(2n) {
+            animation-delay: 0.5s;
+        }
+        
+        .fact-tag:nth-child(3n) {
+            animation-delay: 1s;
+        }
+        
+        /* Profile image styling */
+        .profile-image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Subtle floating animation for the container */
+        @keyframes subtleFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            background-color: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+            animation: sparkleFade 1s forwards;
+        }
+        
+        @keyframes sparkleFade {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+        
+        /* Floating decorations */
+        .floating-icon {
+            position: absolute;
+            font-size: 1.2rem;
+            color: var(--primary);
+            opacity: 0.3;
+            z-index: -1;
+            animation: floatIcon 15s linear infinite;
+        }
+        
+        @keyframes floatIcon {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-500px) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Gallery grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">About Lynn</a>
+        <a href="character.html">About Mingyu</a>
+    </header>
+
+    <div class="container" id="main-container">
+        <center><h1>Kim Mingyu | SEVENTEEN</h1></center>
+        
+        <div class="highlight">
+            <h3>The All-Rounder of SEVENTEEN ✨</h3>
+            <div class="profile-image-container">
+                <img src="_ (4).jpeg" alt="Mingyu SEVENTEEN" class="profile-image">
+            </div>
+            <p>Kim Mingyu (김민규) is a South Korean singer, rapper, and visual of the 13-member boy group SEVENTEEN under Pledis Entertainment. Known as the "All-Rounder" of the group, Mingyu excels in dancing, rapping, singing, and even composing!</p>
+        </div>
+
+        <h3>Basic Profile 💎</h3>
+        <ul>
+            <li><strong>Stage Name:</strong> Mingyu (민규)</li>
+            <li><strong>Birth Name:</strong> Kim Min-gyu (김민규)</li>
+            <li><strong>Birthday:</strong> April 6, 1997</li>
+            <li><strong>Zodiac Sign:</strong> Aries</li>
+            <li><strong>Height:</strong> 187 cm (6'2")</li>
+            <li><strong>Nationality:</strong> Korean</li>
+            <li><strong>Position:</strong> Rapper, Vocalist, Visual</li>
+            <li><strong>Unit:</strong> Hip-Hop Team, Performance Team</li>
+        </ul>
+
+        <h3>Quick Facts! 🌟</h3>
+        <div class="facts">
+            <span class="fact-tag">Visual King</span>
+            <span class="fact-tag">187cm Tall</span>
+            <span class="fact-tag">Golden Ratio Face</span>
+            <span class="fact-tag">All-Rounder</span>
+            <span class="fact-tag">MC Experience</span>
+            <span class="fact-tag">Variety Star</span>
+            <span class="fact-tag">Photography Lover</span>
+            <span class="fact-tag">Dog Person</span>
+        </div>
+
+        <h3>Personality & Traits 🐶</h3>
+        <p>Mingyu is known for his bright and energetic personality. Despite his intimidating visuals and height, he's actually very sweet and caring towards members and fans alike. He's often called the "Golden Retriever" of SEVENTEEN because of his loyal and playful nature.</p>
+        <p>Some special things about Mingyu:</p>
+        <ul>
+            <li>Has a famous "Mingyu Bread" incident where he burned bread during a live broadcast</li>
+            <li>Known for his incredible cooking skills (except when it comes to bread!)</li>
+            <li>Has a dog named Aengdu (which means "grape" in Korean)</li>
+            <li>Loves photography and often shares his photos</li>
+            <li>Has the "Golden Ratio" face that matches Korean beauty standards perfectly</li>
+        </ul>
+
+        <h3>Career Highlights 🎤</h3>
+        <p>Mingyu debuted with SEVENTEEN on May 26, 2015 with the mini album "17 Carat". Since then, he's been involved in:</p>
+        <ul>
+            <li>Songwriting and composition for SEVENTEEN's albums</li>
+            <li>MC for various music shows</li>
+            <li>Appeared on numerous variety shows showcasing his charming personality</li>
+            <li>Modeling for brands like Calvin Klein Korea</li>
+            <li>Photography exhibitions showcasing his work</li>
+        </ul>
+
+        <h3>Mingyu Gallery 📸</h3>
+        <div class="gallery">
+            <img src="_ (1).jpeg" alt="Mingyu 1">
+            <img src="_ (2).jpeg" alt="Mingyu 2">
+            <img src="20240623 Mingyu Instagram Update.jpeg" alt="Mingyu 3">
+            <img src="Mingyu.jpeg" alt="Mingyu 4">
+            <img src="_.jpeg" alt="Mingyu 5">
+            <img src="MINGYU (1).jpeg" alt="Mingyu 6">
+        </div>
+    </div>
+
+    <script>
+        // Create floating decorations
+        function createIcons() {
+            const container = document.getElementById('main-container');
+            const colors = ['#3b82f6', '#60a5fa', '#93c5fd'];
+            const icons = ['★', '✧', '❄', '♬'];
+            
+            for (let i = 0; i < 10; i++) {
+                const icon = document.createElement('div');
+                icon.classList.add('floating-icon');
+                icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.left = Math.random() * 100 + 'vw';
+                icon.style.animationDuration = (10 + Math.random() * 20) + 's';
+                icon.style.animationDelay = Math.random() * 5 + 's';
+                icon.style.fontSize = (10 + Math.random() * 15) + 'px';
+                icon.style.color = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(icon);
+            }
+        }
+        
+        // Add sparkle effect on click
+        document.addEventListener('click', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = e.clientX + 'px';
+            sparkle.style.top = e.clientY + 'px';
+            sparkle.style.width = (10 + Math.random() * 20) + 'px';
+            sparkle.style.height = sparkle.style.width;
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        });
+        
+        // Initialize animations
+        window.addEventListener('load', function() {
+            createIcons();
+            
+            // Animate list items sequentially
+            const listItems = document.querySelectorAll('li');
+            listItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
